@@ -6,7 +6,7 @@ import AppHeader from './app-header/app-header.js';
 import ItemStatusFilter from './item-status-filter/item-status-filter.js';
 import '../bootstrap.css';
 import './App.css';
-
+import { todoListRef } from '../firebase';
 export default class App extends Component {
   maxId = 100;
 
