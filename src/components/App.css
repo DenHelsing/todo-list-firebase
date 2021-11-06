@@ -1,0 +1,9 @@
+div#root{
+   width: 50%;
+   margin: 0 auto; 
+}
+div.searchPanel{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
