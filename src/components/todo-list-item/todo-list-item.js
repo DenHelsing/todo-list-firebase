@@ -13,6 +13,7 @@ class TodoListItem extends Component {
   render() {
     const {
       label,
+      deadline,
       onDeleted,
       onToggleImportant,
       onToggleDone,
@@ -34,9 +35,20 @@ class TodoListItem extends Component {
 
     let labelChangedValue = label;
 
+    // const daysLeft =
+    //   (deadline.getTime() - new Date().getTime()) / (1000 * 3600 * 24);
+    // console.log(deadline);
+    // console.log(typeof deadline);
+    const daysLeft =
+      deadline.length === 0
+        ? ''
+        : Math.floor(
+            (Date.parse(deadline) - new Date().getTime()) / (1000 * 3600 * 24)
+          );
+    console.log(daysLeft);
     const listItemLabel = (
       <span className="todo-list-item-label" onClick={onToggleDone}>
-        {label}
+        {daysLeft.length === 0 ? label : label + ' | Days left: ' + daysLeft}
       </span>
     );
     const listItemEdit = (

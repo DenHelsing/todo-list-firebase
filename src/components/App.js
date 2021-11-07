@@ -6,7 +6,6 @@ import AppHeader from './app-header/app-header.js';
 import ItemStatusFilter from './item-status-filter/item-status-filter.js';
 import '../bootstrap.css';
 import './App.css';
-import { todoListRef } from '../firebase';
 export default class App extends Component {
   maxId = 100;
 
@@ -22,12 +21,14 @@ export default class App extends Component {
     statusFilter: 'all'
   };
 
-  createToDoItem(label) {
+  createToDoItem(label, deadline = '', priority = 0, important = false) {
     return {
       label,
       id: this.maxId++,
+      priority,
+      deadline,
+      important,
       done: false,
-      important: false,
       editing: false
     };
   }
@@ -42,9 +43,14 @@ export default class App extends Component {
     });
   };
 
-  addAnItem = (txt) => {
+  addAnItem = (txt, deadline, priority, important) => {
     this.setState(({ todoData }) => {
-      return { todoData: [...todoData, this.createToDoItem(txt)] };
+      return {
+        todoData: [
+          ...todoData,
+          this.createToDoItem(txt, deadline, priority, important)
+        ]
+      };
     });
   };
 
@@ -169,7 +175,11 @@ export default class App extends Component {
           onEnterEditMode={(id) => this.onEnterEditMode(id)}
           onExitEditMode={(id, newLabel) => this.onExitEditMode(id, newLabel)}
         />
-        <ItemAddForm onAdding={(txt) => this.addAnItem(txt)} />
+        <ItemAddForm
+          onAdding={(txt, deadline, priority, important) =>
+            this.addAnItem(txt, deadline, priority, important)
+          }
+        />
       </div>
     );
   }
