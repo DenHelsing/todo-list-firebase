@@ -7,3 +7,9 @@ div.searchPanel{
     flex-direction: row;
     justify-content: space-between;
 }
+
+.saveButton{
+    margin: 10px;
+    width: 100%;
+}
+

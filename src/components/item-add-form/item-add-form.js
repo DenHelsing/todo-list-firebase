@@ -4,7 +4,7 @@ import './item-add-form.css';
 export default class ItemAddForm extends Component {
   state = {
     label: '',
-    deadline: '',
+    deadline: 0,
     important: false,
     priority: '',
     placeholder: 'Input a new item',
@@ -67,7 +67,7 @@ export default class ItemAddForm extends Component {
       this.props.onAdding(label, deadline, priority, important);
       this.setState({
         label: '',
-        deadline: '',
+        deadline: 0,
         priority: '',
         placeholder: 'Enter new task',
         txtColor: 'grey'

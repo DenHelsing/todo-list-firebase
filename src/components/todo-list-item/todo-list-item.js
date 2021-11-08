@@ -39,13 +39,12 @@ class TodoListItem extends Component {
     //   (deadline.getTime() - new Date().getTime()) / (1000 * 3600 * 24);
     // console.log(deadline);
     // console.log(typeof deadline);
+    // console.log(deadline);
     const daysLeft =
-      deadline.length === 0
+      deadline === 0
         ? ''
-        : Math.floor(
-            (Date.parse(deadline) - new Date().getTime()) / (1000 * 3600 * 24)
-          );
-    console.log(daysLeft);
+        : Math.floor((deadline - new Date().getTime() / 1000) / (3600 * 24));
+    // console.log(daysLeft);
     const listItemLabel = (
       <span className="todo-list-item-label" onClick={onToggleDone}>
         {daysLeft.length === 0 ? label : label + ' | Days left: ' + daysLeft}
